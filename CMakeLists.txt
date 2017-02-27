@@ -13,6 +13,8 @@ ENDFOREACH()
 
 message(STATUS "ld is ${CMAKE_LINKER}")
 add_library(main OBJECT ${SRC_LIST})
-add_executable(hello $<TARGET_OBJECTS:main> )
-target_link_libraries(hello -Wl,--whole-archive oss -Wl,-no-whole-archive )
+add_executable(hello $<TARGET_OBJECTS:main>)
+
+target_link_libraries(hello oss_subsystem.o)
+#target_link_libraries(hello -Wl,--whole-archive oss -Wl,-no-whole-archive )
 #install(TARGETS hello DESTINATION d:) $<TARGET_OBJECTS:oss>rm
