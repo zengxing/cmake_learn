@@ -1,5 +1,6 @@
-aux_source_directory(. oss_src)
+#aux_source_directory(. oss_src)
 
+set(oss_src 1.c 2.c)
 FOREACH(src ${oss_src})
     get_filename_component(filename ${src} NAME)
     set_property(SOURCE ${src} APPEND PROPERTY COMPILE_DEFINITIONS __FILENAME__=\"${filename}\")  ##"
@@ -25,6 +26,7 @@ set_target_properties(oss PROPERTIES LINKER_LANGUAGE C )
 add_dependencies(oss oss_subsystem)
 
 add_custom_command(TARGET  oss POST_BUILD
+                   COMMAND ${CMAKE_LINKER} -r -o oss_subsystem.o --whole-archive $<TARGET_FILE_NAME:oss>
                    COMMAND echo oss compile done)
 
 add_custom_command(TARGET  oss PRE_BUILD

@@ -1,7 +1,7 @@
 cmake_minimum_required (VERSION 2.8.4)
 set(CMAKE_VERBOSE_MAKEFILE off)
 project (hello)
-
+ENABLE_LANGUAGE(ASM)
 set(SRC_LIST hello.c test.c)
 
 add_subdirectory(oss)
